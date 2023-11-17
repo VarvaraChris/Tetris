@@ -24,20 +24,24 @@ class Grid:
         self.colors = Colors.get_cell_colors()
         self.grid = [[0 for j in range(self.num_cols)] for i in range(self.num_rows)]
     
+    #проверка выхода фигуры за границы поля
     def is_inside(self, x, y):
         if x >= 0 and x < self.num_cols and y >= 0 and y < self.num_rows:
             return True
         return False
     
+    #проверка перекрытия одной фигуры другой
     def is_empty(self, x, y):
         return self.grid[y][x] == 0
     
+    #проверка заполненности нижней строчки
     def is_row_full(self, row):
         for col in range(self.num_cols):
             if self.grid[row][col] == 0:
                 return False
         return True
     
+    #очистка заполненных нижних строчек
     def clear_row(self):
         filled = 0
         for row in range(self.num_rows - 1, 0, -1):
@@ -51,6 +55,7 @@ class Grid:
                     self.grid[row][col] = 0
         return filled
     
+    #применение гравитации при нажатии кнопки (части фигур опускаются и заполняют пропуски под собой)
     def drop_cells(self):
         for col in range(self.num_cols):
             read_row = self.num_rows - 1
@@ -66,7 +71,8 @@ class Grid:
                         self.grid[read_row][col] = 0
                     write_row -= 1
                 read_row -= 1
-
+    
+    #рисование поля по массиву grid
     def draw(self, game_screen):
         for row in range(self.num_rows):
            for col in range(self.num_cols):
