@@ -4,6 +4,7 @@ from random import choice
 from figures import LFigure, JFigure, IFigure, SFigure, TFigure, ZFigure, OFigure
 from random import choice, randrange
 
+
 class Abyss:
     def __init__(self):
         self.cell_size = 37
@@ -74,8 +75,9 @@ class Game:
         self.grid.draw(game_screen)
         self.current_figure.draw(game_screen, 0, 0)
         self.next_figure.draw(screen, 465, 350)
-        self.draw_abyss(game_screen, self.position_abyss)
+        self.draw_abyss(game_screen, self.position_abyss) 
 
+    #сброс игры после заполнения поля, осуществляется при нажатии любой клавиши
     def reset(self):
         self.figures = [LFigure(), JFigure(), IFigure(), SFigure(), TFigure(), ZFigure(), OFigure()]
         for row in range(self.grid.num_rows):
@@ -85,6 +87,7 @@ class Game:
         self.position_abyss = self.get_random_abyss()
         self.score = 0
     
+    #после достижения текущей фигуры нижней границы поля - обновление счёта, смена фигуры, позиции бездны и других параметров
     def stop(self):
         self.count_abysses +=1
         cells = self.current_figure.get_cell_positions()
@@ -107,7 +110,7 @@ class Game:
         if self.is_overlay() == True:
             self.game_over = True
 
-
+    #случай выхода фигуры за границы поля
     def figure_inside(self):
         cells = self.current_figure.get_cell_positions()
         for cell in cells:
@@ -115,14 +118,15 @@ class Game:
                 return False
         return True
     
+    #случай перекрытия одной фигуры другой
     def is_overlay(self):
         cells = self.current_figure.get_cell_positions()
         for cell in cells:
             if self.grid.is_empty(cell[0], cell[1]) == False:
                 return True
         return False
-    
 
+    #движение фигуры
     def move_left(self):
         self.current_figure.move(-1, 0)
         if self.figure_inside() == False:
@@ -159,7 +163,7 @@ class Game:
                 self.next_figure = self.get_random_figure()
             else:
                 self.current_figure.move(0, -1)
-                self.stop()
+                self.stop() #остановка движения фигуры, вызов следующей
 
     def rotate(self):
         self.current_figure.rotate()
