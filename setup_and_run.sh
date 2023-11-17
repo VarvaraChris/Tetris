@@ -4,4 +4,4 @@ source venv/bin/activate
 
 pip install -r requirements.txt
 
-python control.py
+python src/control.py
