@@ -28,7 +28,9 @@ class Figure:
     def draw(self, game_screen, offset_x, offset_y):
         cells = self.get_cell_positions()
         for cell in cells:
-            cell_rect = pygame.Rect(cell[0] * self.cell_size + offset_x, cell[1] * self.cell_size + offset_y, self.cell_size - 1, self.cell_size - 1)
+            cell_rect = pygame.Rect(cell[0] * self.cell_size + offset_x,
+                                    cell[1] * self.cell_size + offset_y,
+                                    self.cell_size - 1, self.cell_size - 1)
             pygame.draw.rect(game_screen, self.colors[self.color], cell_rect)
     
     def rotate(self):
