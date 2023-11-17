@@ -1,5 +1,4 @@
 import pygame
-from random import choice
 
 class Colors:
     green = (50, 153, 50)
