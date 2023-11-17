@@ -1,5 +1,7 @@
+import pygame
 from field import Grid
-from figures import*
+from random import choice
+from figures import LFigure, JFigure, IFigure, SFigure, TFigure, ZFigure, OFigure
 from random import choice, randrange
 
 class Abyss:
@@ -8,7 +10,6 @@ class Abyss:
         self.color = (0, 0, 0)
     def get_position_abyss(self):
         return (randrange(10), randrange(4, 20))
-
 
 class Game:
     def __init__(self):
