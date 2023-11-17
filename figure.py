@@ -38,6 +38,7 @@ class Figure:
         if self.rotation_state == len(self.cells):
             self.rotation_state = 0 
 
+    #отмена поворота
     def reverse_rotation(self):
         self.rotation_state -= 1
         if self.rotation_state == -1:
