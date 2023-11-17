@@ -1,4 +1,4 @@
-from figure import*
+from figure import Figure
 
 class LFigure(Figure):
 	def __init__(self):
